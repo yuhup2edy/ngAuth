@@ -1,0 +1,7 @@
+npm init --yes
+npm install --save express body-parser cors nodemon 
+ng new ngAuth
+npm install --save rxjs-compat
+
+** remember to start nodemon server from within the server folder else you will get a index.js missing error 
+
