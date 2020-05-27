@@ -4,4 +4,5 @@ ng new ngAuth
 npm install --save rxjs-compat
 
 ** remember to start nodemon server from within the server folder else you will get a index.js missing error 
+npm install --save mongoose 
 
