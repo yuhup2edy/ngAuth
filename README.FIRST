@@ -10,4 +10,7 @@ npm install --save mongoose
 
 Registration API testing with Postman - add header and body in raw format
 
+Copy the bootstrap css and js files into index.html
+
+
 
