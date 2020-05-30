@@ -23,6 +23,7 @@ router.get('/',(req,res)=>{
 });
 
 router.post('/register',(req,res) =>{
+    console.log("Received request to post data");
     let userData = req.body;    // get the input from the request 
     let user = new User(userData); // cast it to the model (includes the schema)
 

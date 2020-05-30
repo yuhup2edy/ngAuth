@@ -5,6 +5,7 @@ const api = require('./routes/api');
 
 const PORT = 3000;
 const app = express();
+app.use(cors());                // this will eliminate the UI error where angular & express run on different ports. CORS is middleware
 
 app.use(bodyParser.json());
 app.use('/api',api);
