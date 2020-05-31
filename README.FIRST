@@ -14,7 +14,7 @@ Copy the bootstrap css and js files into index.html
 
 Remember to import the new service created in the provider array on appmodule.ts
 
-
+Remember CORS()
 
 
 
