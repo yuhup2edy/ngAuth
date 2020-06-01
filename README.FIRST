@@ -20,6 +20,6 @@ npm install --save jsonwebtoken for the authentication
 
 ng g guard auth - this is the auth guard that prevents invalid routing. can return true or false and we redirect control appropriately
 
-
+ng g s token-interceptor 
 
 

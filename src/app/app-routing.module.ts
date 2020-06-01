@@ -10,7 +10,9 @@ import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   {path : '', redirectTo : '/events',pathMatch : 'full'},
   {path : 'events', component : EventsComponent},
-  {path : 'special', component : SpecialEventsComponent, canActivate : [AuthGuard]}, // Auth guard prevents invali routing
+  {path : 'special', component : SpecialEventsComponent,canActivate : [AuthGuard]},
+  // Auth guard prevents invalid routing from the front end
+  // verifyToken function in the middleware (server) to check the backend
   {path : 'login', component : LoginComponent},
   {path : 'register', component : RegisterComponent}
 

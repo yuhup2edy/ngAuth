@@ -20,6 +20,30 @@ mongoose.connect(db,err=>{
     }
 })
 
+// write a custom middleware to validate the token. 
+
+function verifyToken(req,res,next){
+  
+  if (!req.headers.authorization) {
+    res.status(401).send('Unauthorized Request - Missing Auth Headers');
+  }
+  
+  let token = req.headers.authorization.split(' ')[1];
+  //above command extracts the authorization header, splits it by space and extracts only second index
+  // remember auth is sent as 'Bearer space jwt'. Here we will pull the jwt
+  if (token === null){
+    res.status(401).send('Unauthorized Request - Null Auth Token received');
+  }
+
+  let payload = jwt.verify(token,'secretKey'); // remember the secretKey is hardcoded as SecretKey
+  //verify returns decoded token only if valid
+  if (!payload){
+    res.status(401).send('Unauthorized Request - Missing payload info on token verify');
+  }
+  req.userId = payload.subject; // assign the subject of payload to user id of request
+  next(); // we pass control to the next operation (here, it's middleware to server)
+}
+
 router.get('/',(req,res)=>{
     res.send("Response coming from the API routes file on server");
 });
@@ -132,8 +156,11 @@ let events = [
   res.json(events)
 });
 
-router.get('/special',(req,res)=>{
-// return hard coded array of events; 
+
+router.get('/special',verifyToken,(req,res)=>{
+// in the special events method, call the verifyToken as the second arg. Here workflow is that the
+// verifyToken is validated and then only control is passed for below statements to execute. this is 
+// controlled by the next() function that we code within the verifyToken function. 
 
 let events = [
     {
