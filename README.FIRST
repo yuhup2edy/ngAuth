@@ -16,5 +16,10 @@ Remember to import the new service created in the provider array on appmodule.ts
 
 Remember CORS()
 
+npm install --save jsonwebtoken for the authentication 
+
+ng g guard auth - this is the auth guard that prevents invalid routing. can return true or false and we redirect control appropriately
+
+
 
 

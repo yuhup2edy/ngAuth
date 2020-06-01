@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+
 
 const mongoose = require('mongoose');
 const User = require('../models/user');
@@ -34,7 +36,12 @@ router.post('/register',(req,res) =>{
         }
         else
         {
-            res.status(200).send(registeredUser);
+            // generate the JWT payload as an object. by default it's called subject with the _id as the value
+            let payload = {subject : registeredUser._id};
+            let token = jwt.sign(payload,'secretKey'); // the 2nd argument is a secret key and can be anything. we call it string (secretkey)
+            //res.status(200).send(registeredUser);
+            // instead of sending the registredUser json, send the generated token back to the UI as an object
+            res.status(200).send({token});
         }
 
     });
@@ -67,7 +74,12 @@ router.post('/login',(req,res)=>{
                 }
                 else
                 {
-                    res.status(200).send(matchedUser);
+                    let payload = {subject : matchedUser._id};
+                    let token = jwt.sign(payload,'secretKey'); // the 2nd argument is a secret key and can be anything. we call it string (secretkey)
+                    //res.status(200).send(matchedUser);
+                    // instead of sending the matchedUser json, send the generated token back to the UI as an object
+                    res.status(200).send({token});
+           
                 }
             }
         }

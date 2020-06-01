@@ -18,4 +18,10 @@ export class AuthService {
   loginUser(user){
     return this._http.post<any>(this._loginUrl,user);
   }
+
+  loggedIn()
+  {
+    return !!localStorage.getItem('token');
+    // double negate the return value. will return only when a token is present in local storage. will be used by the auth guard 
+  }
 }
